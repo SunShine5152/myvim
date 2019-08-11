@@ -1,2 +1,3 @@
 # myvim
-my vim
+add .vimrc
+add .gitconfig
