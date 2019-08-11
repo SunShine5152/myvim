@@ -1,0 +1,24 @@
+[user]
+	name = liyingjie
+	email = liyingjie@simcom.com
+[alias]
+	co=checkout
+	ci=commit
+	br=branch
+	st=status
+  gp=grep -n
+  fd=find
+	last=log -1
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	autocrlf = input
+	filemode = false
+  safecrlf = true
+	editor = vim
+	whitespace = cr-at-eol
+[color]
+	diff = auto
+	branch = auto
+	status = auto
+	interactive = auto
+
