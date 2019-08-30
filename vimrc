@@ -1,5 +1,6 @@
 "**************lyj*********************"
 "<<<map
+let mapleader=" "
 map s <nop>
 map S :w<CR>
 map Q :q<CR>
@@ -21,7 +22,6 @@ set incsearch
 set ignorecase
 set smartcase
 set nowrapscan
-let mapleader=" "
 noremap <LEADER><CR> :nohlsearch<CR>
 ">>>
 "<<<分屏map
@@ -62,11 +62,11 @@ set relativenumber
 "list设置显示行尾的空格和tab
 set list
 set listchars=tab:▸\ ,trail:▫
+set backspace=indent,eol,start
 "<<<?????"
 "set scrolloff=5
 "set tw=0
 "set indentexpr=
-"set backspace=indent,eol,start
 ">>>
 "set foldmethod=indent
 "set foldlevel=99
@@ -77,6 +77,7 @@ set laststatus=2
 "set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 set cursorline
+"set cursorcolumn
 set smarttab
 set nobackup
 set ruler
@@ -88,7 +89,6 @@ set noswapfile
 set paste
 set confirm
 ">>>
-
 
 "=================================================================================================
 "=================================================================================================
@@ -107,8 +107,15 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/cscope.vim'
 Plugin 'wesleyche/SrcExpl'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'ycm-core/YouCompleteMe'
-"Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Yggdroot/indentLine'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -139,14 +146,14 @@ let Tlist_Use_Right_Windowl=0
 "设置taglist窗口大小
 let Tlist_WinHeight=100
 let Tlist_WinWidth=40
-"设置taglist打开关闭的快捷键
-noremap <F7> :TlistToggle
 "更新ctags标签文件快捷键设置
-noremap <F6> :!ctags -R
+"noremap <F6> :!ctags -R
+"设置taglist打开关闭的快捷键
+"noremap <F7> :TlistToggle<CR>
 " ===
 " === NERDTree
 " ===
-map ff :NERDTreeToggle<CR>
+"map ff :NERDTreeToggle<CR>
 let NERDTreeMapOpenExpl = ""
 let NERDTreeMapUpdir = ""
 let NERDTreeMapUpdirKeepOpen = "l"
@@ -158,6 +165,18 @@ let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "n"
 let NERDTreeMapChangeRoot = "y"
 let NERDTreeWinPos='right'
+" ===
+" ===vim-colors-solarized'
+" ===
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+syntax enable
+set background=dark
+colorscheme solarized
+call togglebg#map("<F5>")
+"colorscheme molokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
 " ===
 " === CSCOPE
 " ===
@@ -184,22 +203,15 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 " ===
 " === SRCEXPL
-" ===
-" // The switch of the Source Explorer 
-nmap <F8> :SrcExplToggle<CR> 
-
+"nmap <F8> :SrcExplToggle<CR> 
 " // Set the height of Source Explorer window 
 let g:SrcExpl_winHeight = 8 
-
 " // Set 100 ms for refreshing the Source Explorer 
 let g:SrcExpl_refreshTime = 100 
-
 " // Set "Enter" key to jump into the exact definition context 
 let g:SrcExpl_jumpKey = "<ENTER>" 
-
 " // Set "Space" key for back from the definition context 
 let g:SrcExpl_gobackKey = "<SPACE>" 
-
 " // In order to avoid conflicts, the Source Explorer should know what plugins except
 " // itself are using buffers. And you need add their buffer names into below list
 " // according to the command ":buffers!"
@@ -244,38 +256,6 @@ let g:SrcExpl_prevDefKey = "<F3>"
 
 " // Set "<F4>" key for displaying the next definition in the jump list 
 let g:SrcExpl_nextDefKey = "<F4>" 
-" ===
-" ===vim-colors-solarized'
-" ===
-"syntax enable
-"set background=dark
-"colorscheme solarized
-"let g:solarized_termcolors=256
-"call togglebg#map("<F5>")
-
-
 "*****************************c模板********************
 autocmd BufNewFile *.c 0r /home/lyj/.vim/template/c.tlp
-
-
-
-
-"********autocomplpop插件,一个字母即可补全***************
-let g:acp_behaviorKeywordLength = 1  
-let g:AutoComplPop_MappingDriven = 1  
-"****color  
-hi Pmenu guibg=#444444  
-hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
-
-"****************omnicppcomplete脚本插件设置************
-"set completeopt=menu,menuone  
-"let OmniCpp_MayCompleteDot=1    "打开  . 操作符
-"let OmniCpp_MayCompleteArrow=1  "打开 -> 操作符
-"let OmniCpp_MayCompleteScope=1  "打开 :: 操作符
-"let OmniCpp_NamespaceSearch=1   "打开命名空间
-"let OmniCpp_GlobalScopeSearch=1                           let OmniCpp_DefaultNamespace=["std"]  
-"let OmniCpp_ShowPrototypeInAbbr=1  "打开显示函数原型
-"let OmniCpp_SelectFirstItem=2
-
-filetype plugin on
 
