@@ -88,6 +88,7 @@ set clipboard=unnamed
 set noswapfile
 set paste
 set confirm
+set t_Co=256
 ">>>
 
 "=================================================================================================
@@ -126,6 +127,17 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 ">>>
 
+" ===
+" ===	FUGITIVE 
+" ===
+map c1 o<ESC>i/*SIMCOM liyingjie  fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin*/<ESC>
+map c2 o<ESC>i/*SIMCOM liyingjie  fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
+map c3 $a    //SIMCOM liyingjie add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
+map x1 o<ESC>i<!-- SIMCOM liyingjie fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
+map x2 o<ESC>i<!-- SIMCOM liyingjie fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
+map x3 $a    <!-- SIMCOM liyingjie add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
+vmap <C-c> "+y
+nmap <C-v> "+p
 " ===
 " === CTAGS
 " ===
@@ -177,6 +189,30 @@ call togglebg#map("<F5>")
 "colorscheme molokai
 "let g:molokai_original = 1
 "let g:rehash256 = 1
+
+" ===
+" ===colorscheme material
+" ===
+" Dark
+"set background=dark
+"colorscheme vim-material
+
+" Palenight
+"let g:material_style='palenight'
+"set background=dark
+"colorscheme vim-material
+
+" Oceanic
+"let g:material_style='oceanic'
+"set background=dark
+"colorscheme vim-material
+
+" Light
+"set background=light
+"colorscheme vim-material
+
+"let g:airline_theme='material'
+
 " ===
 " === CSCOPE
 " ===
