@@ -1,0 +1,18 @@
+127.0.0.1	localhost
+127.0.1.1	ace-Inspiron-5577
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# ace add for github access slow at 2021/11/21
+# 'nslookup github.com' get ip 166
+# 'nslookup github.global.ssl.fastly.net' get ip 116
+# terminal excute cmd 'sudo /etc/init.d/networking restart' after add below 4 lines at this file(/etc/hosts)
+108.160.163.116 http://github.global.ssl.fastly.net
+108.160.163.116 https://github.global.ssl.fastly.net
+20.205.243.166 http://github.com
+20.205.243.166 https://github.com

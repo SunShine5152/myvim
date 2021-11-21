@@ -1,19 +1,45 @@
 "**************lyj*********************"
+let mapleader="\<space>"
 "<<<map
-let mapleader=" "
 map s <nop>
-map S :w<CR>
+"map S :w<CR>
 map Q :q<CR>
-map R :source ~/.vimrc<CR>
+"map <C-e> :only<CR>
+map <LEADER>s :w<CR>
+map <LEADER>q :q
+"open quicker
+map <LEADER>c :cw<CR>
+
+"这段脚本添加后可以使用alt键像ctrl键一样映射。
+for i in range(97,122)
+  let c = nr2char(i)
+  exec "map \e".c." <M-".c.">"
+  exec "map! \e".c." <M-".c.">"
+endfor
+"jump to define
+map <A-s> <C-o>
+map <A-d> <C-]>
+map <A-f> <C-i>
+"高亮搜索
+noremap <A-m> <S-*> 
+noremap <A-n> <S-#> 
+
+map <LEADER>e :only<CR>
+map <LEADER>rc :vs ~/.vimrc<CR>
+map <LEADER>sr :source ~/.vimrc<CR>
 map ; :
 noremap K 5k
 noremap J 5j
+noremap O $
+noremap U 0
 noremap H 7h
 noremap L 7l
-noremap <C-h> 0
-noremap <C-l> $
+map <C-h> :0<CR>
+map <C-l> :$<CR>
 noremap = nzz
 noremap - Nzz
+">>>
+"<<ctrl-c,ctrl-v
 ">>>
 "<<<搜索
 set hlsearch
@@ -29,7 +55,12 @@ map sl :set splitright<CR>:vsplit<CR>
 map sh :set nosplitright<CR>:vsplit<CR>
 map sk :set nosplitbelow<CR>:split<CR>
 map sj :set splitbelow<CR>:split<CR>
-map <LEADER>l <C-w>l
+map sv <C-w>t<C-w>H
+map sp <C-w>t<C-w>K
+"map sk :split
+"map sl :vsplit
+"map <LEADER>l <C-w>l
+map <LEADER>l <C-w>w
 map <LEADER>k <C-w>k
 map <LEADER>h <C-w>h
 map <LEADER>j <C-w>j
@@ -37,12 +68,15 @@ map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
-map sv <C-w>t<C-w>H
-map sh <C-w>t<C-w>K
 "标签设置
-map tu :tabe<CR>
-map th :-tabnext<CR>
-map tl :tabnext<CR>
+map tu :tabnew<CR>
+map th :tabp<CR>
+map tl :tabn<CR>
+map tu :tabfirst<CR>
+map to :tablast<CR>
+" Move the tabs with tmn and tmi
+map tj :-tabmove<CR>
+map tk :+tabmove<CR>
 ">>>
 "<<<常规设置
 set nocompatible
@@ -53,16 +87,33 @@ filetype plugin indent on
 set mouse=nv
 set encoding=utf-8
 let &t_ut=''
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
 set nu
 set relativenumber
+syntax enable
+syntax on
+set cursorline
+"set cursorcolumn
+"set smarttab
+set nobackup
+set ruler
+set autoindent
+set smartindent
+set cindent
+set clipboard=unnamed
+set noswapfile
+set paste
+set confirm
+set t_Co=256
+set cmdheight=1
 "list设置显示行尾的空格和tab
 set list
-set listchars=tab:▸\ ,trail:▫
-set backspace=indent,eol,start
+set listchars=tab:>-,trail:-
+"set backspace=indent,eol,start
+set showcmd
 "<<<?????"
 "set scrolloff=5
 "set tw=0
@@ -76,19 +127,8 @@ set backspace=indent,eol,start
 set laststatus=2
 "set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-set cursorline
-"set cursorcolumn
-set smarttab
-set nobackup
-set ruler
-set autoindent
-set smartindent
-set cindent
-set clipboard=unnamed
-set noswapfile
-set paste
-set confirm
-set t_Co=256
+"<<<字体设置
+set guifont=Courier\New:h10
 ">>>
 
 "=================================================================================================
@@ -102,21 +142,26 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
+"Plugin 'hzchirs/vim-material'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/cscope.vim'
 Plugin 'wesleyche/SrcExpl'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
+"Plugin 'tomasr/molokai'
 Plugin 'Lokaltog/vim-powerline'
-Plugin 'vim-airline/vim-airline'
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'ycm-core/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Yggdroot/indentLine'
+Plugin 'terryma/vim-smooth-scroll'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'inkarkat/vim-ingo-library'
+Plugin 'inkarkat/vim-mark'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -130,12 +175,12 @@ filetype plugin indent on    " required
 " ===
 " ===	FUGITIVE 
 " ===
-map c1 o<ESC>i/*SIMCOM liyingjie  fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin*/<ESC>
-map c2 o<ESC>i/*SIMCOM liyingjie  fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
-map c3 $a    //SIMCOM liyingjie add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
-map x1 o<ESC>i<!-- SIMCOM liyingjie fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
-map x2 o<ESC>i<!-- SIMCOM liyingjie fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
-map x3 $a    <!-- SIMCOM liyingjie add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
+map c1 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin*/<ESC>
+map c2 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
+map c3 $a    //OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
+map x1 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
+map x2 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
+map x3 $a    <!-- OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
 vmap <C-c> "+y
 nmap <C-v> "+p
 " ===
@@ -150,22 +195,22 @@ let Tlist_Show_One_File=1
 "taglist为最后一个窗口时退出vim
 let Tlist_Exit_OnlyWindow=1
 "设置ctags路径
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+let Tlist_Ctags_Cmd='/usr/bin/ctags'
 "启动vim后自动打开taglist窗口
-let Tlist_Auto_Open=1
+let Tlist_Auto_Open=0
 "taglist窗口显示在右侧，缺省为左侧
-let Tlist_Use_Right_Windowl=0
+let Tlist_Use_Right_Window=0
 "设置taglist窗口大小
 let Tlist_WinHeight=100
 let Tlist_WinWidth=40
 "更新ctags标签文件快捷键设置
 "noremap <F6> :!ctags -R
 "设置taglist打开关闭的快捷键
-"noremap <F7> :TlistToggle<CR>
+noremap <F7> :TlistToggle<CR>
 " ===
 " === NERDTree
 " ===
-"map ff :NERDTreeToggle<CR>
+map ff :NERDTreeToggle<CR>
 let NERDTreeMapOpenExpl = ""
 let NERDTreeMapUpdir = ""
 let NERDTreeMapUpdirKeepOpen = "l"
@@ -177,6 +222,8 @@ let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "n"
 let NERDTreeMapChangeRoot = "y"
 let NERDTreeWinPos='right'
+let NERDTreeShowHidden=1
+let NERDTreeShowBookmarks=1
 " ===
 " ===vim-colors-solarized'
 " ===
@@ -184,9 +231,11 @@ let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 syntax enable
 set background=dark
-colorscheme solarized
-call togglebg#map("<F5>")
-"colorscheme molokai
+"colorscheme solarized
+"call togglebg#map("<F5>")
+" ===
+" ===colorscheme molokai
+" ===
 "let g:molokai_original = 1
 "let g:rehash256 = 1
 
@@ -218,28 +267,57 @@ call togglebg#map("<F5>")
 " ===
 "cscope -Rbq
 "cs add cscope.out
-nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
+"nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
 "nnoremap <leader>l :call ToggleLocationList()<CR>
 " s: Find this C symbol
-nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+"nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
 " g: Find this definition
-nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
+"nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
 " d: Find functions called by this function
-nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
+"nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
 " c: Find functions calling this function
-nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
+"nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
 " t: Find this text string
-nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+"nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
 " e: Find this egrep pattern
-nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+"nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
 " f: Find this file
-nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+"nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
 " i: Find files #including this file
+"usage 
+"use 'cw' to watch search result
+"use s find all symbol
+"use c find call place
+"use f open include file
+"nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-g> :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <f3> :cnext<CR>
+nmap <f4> :cprevious<CR>
+"cs add /home/ace_li/workspace/temp/OX01G10_rom/cscope.out /home/ace_li/workspace/temp/OX01G10_rom
 set cscopequickfix=s-,c-,d-,i-,t-,e-
-
+if has("cscope")
+    "set csprg=/home/ace_li/bin/cscope/bin/cscope
+    set csprg=/usr/bin/cscope
+    set csto=1
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    set csverb
+endif
 " ===
 " === SRCEXPL
-"nmap <F8> :SrcExplToggle<CR> 
+" ===
+"map <F8> :SrcExplToggle<CR> 
 " // Set the height of Source Explorer window 
 let g:SrcExpl_winHeight = 8 
 " // Set 100 ms for refreshing the Source Explorer 
@@ -292,6 +370,14 @@ let g:SrcExpl_prevDefKey = "<F3>"
 
 " // Set "<F4>" key for displaying the next definition in the jump list 
 let g:SrcExpl_nextDefKey = "<F4>" 
+
+" ===
+" === CTRLP
+" ===
+"<c-j>, <c-k>   - 在搜索结果里上下移动
+"<c-v>, <c-x>   - 以水平或垂直的方式将光标选择的文件打开
+"<c-n>, <c-p>   - 可以选择上一个或下一个搜索条件
+"<c-y>          - 根据你的搜索路径，如果文件不存在，可以用该命令创建一个文件，包括创建目录
 "*****************************c模板********************
-autocmd BufNewFile *.c 0r /home/lyj/.vim/template/c.tlp
+"autocmd BufNewFile *.c 0r /home/lyj/.vim/template/c.tlp
 

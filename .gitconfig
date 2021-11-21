@@ -1,19 +1,21 @@
 [user]
-	name = liyingjie
-	email = liyingjie@simcom.com
+	name = xxx
+	email = xxx@xxx.com
 [alias]
 	co=checkout
 	ci=commit
 	br=branch
-	st=status
+	st=status -uno
   gp=grep -n
   fd=find
 	last=log -1
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[commit]
+#	template = ~/git-commit-template
 [core]
-	autocrlf = input
+	autocrlf = false
 	filemode = false
-  safecrlf = true
+  safecrlf = false
 	editor = vim
 	whitespace = cr-at-eol
 [color]
@@ -21,4 +23,8 @@
 	branch = auto
 	status = auto
 	interactive = auto
+[https]
+#	proxy = socks5://172.21.1.171:808
+[http]
+#	proxy = socks5://172.21.1.171:808
 
