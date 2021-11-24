@@ -3,7 +3,7 @@ let mapleader="\<space>"
 "<<<map
 map s <nop>
 "map S :w<CR>
-map Q :q<CR>
+"map Q :q
 "map <C-e> :only<CR>
 map <LEADER>s :w<CR>
 map <LEADER>q :q
@@ -21,12 +21,13 @@ map <A-s> <C-o>
 map <A-d> <C-]>
 map <A-f> <C-i>
 "高亮搜索
-noremap <A-m> <S-*> 
-noremap <A-n> <S-#> 
+noremap <A-m> <S-*>
+noremap <A-n> <S-#>
 
 map <LEADER>e :only<CR>
 map <LEADER>rc :vs ~/.vimrc<CR>
 map <LEADER>sr :source ~/.vimrc<CR>
+map <LEADER>tm :vs ~/.tmux.conf<CR>
 map ; :
 noremap K 5k
 noremap J 5j
@@ -58,6 +59,7 @@ map sj :set splitbelow<CR>:split<CR>
 map sv <C-w>t<C-w>H
 map sp <C-w>t<C-w>K
 "map sk :split
+map sl :set splitright<CR>:vsplit<CR>
 "map sl :vsplit
 "map <LEADER>l <C-w>l
 map <LEADER>l <C-w>w
@@ -127,8 +129,6 @@ set showcmd
 set laststatus=2
 "set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"<<<字体设置
-set guifont=Courier\New:h10
 ">>>
 
 "=================================================================================================
