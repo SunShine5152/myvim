@@ -381,3 +381,6 @@ let g:SrcExpl_nextDefKey = "<F4>"
 "*****************************c模板********************
 "autocmd BufNewFile *.c 0r /home/lyj/.vim/template/c.tlp
 
+if filereadable($HOME."/.vimrc.loc")
+    source ${HOME}/.vimrc.loc
+endif

@@ -121,6 +121,7 @@ export PATH=/home/ace_li/bin/cscope/bin:$PATH
 alias vim='/home/ace_li/bin/vim82/bin/vim'
 source /home/ace_li/Document/z/z.sh
 alias j='z'
+alias tmux='tmux -2'
 
 export BA_ELF_HOME=/opt/ba-elf-ov494
 export CLANG_HOME=/opt/clang
