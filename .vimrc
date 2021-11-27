@@ -3,11 +3,11 @@ let mapleader="\<space>"
 "<<<map
 map s <nop>
 "map S :w<CR>
-"map Q :q
+map Q :q
 "map <C-e> :only<CR>
 map <LEADER>s :w<CR>
 map <LEADER>q :q
-"open quicker
+"open quickerfix
 map <LEADER>c :cw<CR>
 
 "这段脚本添加后可以使用alt键像ctrl键一样映射。
@@ -71,14 +71,16 @@ map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
 "标签设置
-map tu :tabnew<CR>
-map th :tabp<CR>
-map tl :tabn<CR>
+map tn :tabnew<CR>
+map tc :tabclose<CR>
+map ty :tabonly<CR>
+map tj :tabn<CR>
+map tk :tabp<CR>
 map tu :tabfirst<CR>
 map to :tablast<CR>
 " Move the tabs with tmn and tmi
-map tj :-tabmove<CR>
-map tk :+tabmove<CR>
+map th :-tabmove<CR>
+map tl :+tabmove<CR>
 ">>>
 "<<<常规设置
 set nocompatible
