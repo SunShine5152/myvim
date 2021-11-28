@@ -195,9 +195,9 @@ language messages zh_CN.utf-8
 " ===                                                                                     
 filetype off                  " required                                                  
 set shellslash                                                                                           
-set rtp+=~/vimfiles/bundle/Vundle.vim 
+set rtp+=J:\software_az\gvim\bundle\Vundle.vim
 
-call vundle#begin('~/vimfiles/bundle')                                                                       
+call vundle#begin('J:\software_az\gvim\bundle')                                                                       
 "Plugin 'hzchirs/vim-material'                                                            
 Plugin 'VundleVim/Vundle.vim'                                                             
 Plugin 'vim-scripts/taglist.vim'                                                          
@@ -392,3 +392,13 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green " sets the color of c++ f
 """"""""""""""""""""""""""""""
 "vim-nerdtree-syntax-highlight settings end
 """"""""""""""""""""""""""""""
+"confg key:F2 Toggle Menu and Toolbar
+set guioptions-=m
+set guioptions-=T
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+        \set guioptions-=T <Bar>
+        \set guioptions-=m <bar>
+    \else <Bar>
+        \set guioptions+=T <Bar>
+        \set guioptions+=m <Bar>
+    \endif<CR>
