@@ -59,9 +59,9 @@ noremap <A-m> <S-*>
 noremap <A-n> <S-#>
 
 map <LEADER>e :only<CR>
-map <LEADER>rc :vs ~/.vimrc<CR>
-map <LEADER>sr :source ~/.vimrc<CR>
-map <LEADER>tm :vs ~/.tmux.conf<CR>
+map <LEADER>rc :vs $VIMRUNTIME\..\_vimrc<CR>
+"map <LEADER>sr :source $VIMRUNTIME\..\_vimrc<CR>
+"map <LEADER>tm :vs ~/.tmux.conf<CR>
 map ; :
 noremap K 5k
 noremap J 5j
@@ -167,8 +167,9 @@ set laststatus=2
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 ">>> 
 
-"winpos 100 100
-"set lines=80 columns=100
+"设置打开窗口位置和大小
+winpos 0 0
+set lines=80 columns=100
 
 
 "  Gvim中文菜单乱码解决方案
