@@ -177,11 +177,11 @@ set lines=80 columns=100
 " 设置文件编码格式
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1,gbk,gb18030,gk2312
-if has("win32")
- set fileencoding=chinese
-else
- set fileencoding=utf-8
-endif
+"if has("win32")
+" set fileencoding=chinese
+"else
+" set fileencoding=utf-8
+"endif
 
 "解决菜单乱码
 source $VIMRUNTIME/delmenu.vim
