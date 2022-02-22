@@ -23,6 +23,9 @@ map <A-f> <C-i>
 "高亮搜索
 noremap <A-m> <S-*>
 noremap <A-n> <S-#>
+"新窗口打开和预览
+map <A-e> <C-w>}
+map <A-w> <c-w>]
 
 map <LEADER>e :only<CR>
 map <LEADER>rc :vs ~/.vimrc<CR>
