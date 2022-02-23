@@ -383,6 +383,12 @@ let g:SrcExpl_nextDefKey = "<F4>"
 "<c-v>, <c-x>   - 以水平或垂直的方式将光标选择的文件打开
 "<c-n>, <c-p>   - 可以选择上一个或下一个搜索条件
 "<c-y>          - 根据你的搜索路径，如果文件不存在，可以用该命令创建一个文件，包括创建目录
+" ===
+" === vim-preview
+" ===
+autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<CR>
+autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cR>
+
 "*****************************c模板********************
 "autocmd BufNewFile *.c 0r /home/lyj/.vim/template/c.tlp
 
