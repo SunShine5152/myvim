@@ -3,7 +3,7 @@ let mapleader="\<space>"
 "<<<map
 map s <nop>
 "map S :w<CR>
-map Q :q
+"map Q :q
 "map <C-e> :only<CR>
 map <LEADER>s :w<CR>
 map <LEADER>q :q
@@ -24,7 +24,7 @@ map <A-f> <C-i>
 noremap <A-m> <S-*>
 noremap <A-n> <S-#>
 "新窗口打开和预览
-map <A-e> <C-w>}
+"map <A-e> <C-w>}
 map <A-w> <c-w>]
 
 map <LEADER>e :only<CR>
@@ -69,10 +69,11 @@ map <LEADER>l <C-w>w
 map <LEADER>k <C-w>k
 map <LEADER>h <C-w>h
 map <LEADER>j <C-w>j
-map <up> :res +5<CR>
-map <down> :res -5<CR>
-map <left> :vertical resize-5<CR>
-map <right> :vertical resize+5<CR>
+"map <up> :res +5<CR>
+map <C-m> :res +5<CR>
+map <C-i> :res -5<CR>
+map <C-o> :vertical resize-5<CR>
+map <C-n> :vertical resize+5<CR>
 "标签设置
 map tn :tabnew<CR>
 map tc :tabclose<CR>
@@ -167,6 +168,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'inkarkat/vim-ingo-library'
 Plugin 'inkarkat/vim-mark'
+Plugin 'skywind3000/vim-preview'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -383,12 +385,25 @@ let g:SrcExpl_nextDefKey = "<F4>"
 "<c-v>, <c-x>   - 以水平或垂直的方式将光标选择的文件打开
 "<c-n>, <c-p>   - 可以选择上一个或下一个搜索条件
 "<c-y>          - 根据你的搜索路径，如果文件不存在，可以用该命令创建一个文件，包括创建目录
-" ===
-" === vim-preview
-" ===
-autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<CR>
-autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cR>
 
+" ===
+" === VIM-PREVIEW
+" ===
+autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
+autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
+
+map <A-e> :PreviewTag<CR>
+noremap <A-c> :PreviewClose<CR>
+
+noremap <A-i> :PreviewScroll -1<CR>
+noremap <A-o> :PreviewScroll +1<CR>
+inoremap <A-i> <C-\><C-o>:PreviewScroll -1<CR>
+inoremap <A-o> <C-\><C-o>:PreviewScroll +1<CR>
+
+
+set noshowmode
+noremap <A-p> :PreviewSignature!<CR>
+inoremap <A-p> <c-\><c-o>:PreviewSignature!<CR>
 "*****************************c模板********************
 "autocmd BufNewFile *.c 0r /home/lyj/.vim/template/c.tlp
 
