@@ -69,11 +69,10 @@ map <LEADER>l <C-w>w
 map <LEADER>k <C-w>k
 map <LEADER>h <C-w>h
 map <LEADER>j <C-w>j
-"map <up> :res +5<CR>
-map <C-m> :res +5<CR>
-map <C-i> :res -5<CR>
-map <C-o> :vertical resize-5<CR>
-map <C-n> :vertical resize+5<CR>
+map <up> :res +5<CR>
+map <down> :res -5<CR>
+map <left> :vertical resize-5<CR>
+map <right> :vertical resize+5<CR>
 "标签设置
 map tn :tabnew<CR>
 map tc :tabclose<CR>
