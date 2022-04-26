@@ -409,3 +409,21 @@ inoremap <A-p> <c-\><c-o>:PreviewSignature!<CR>
 if filereadable($HOME."/.vimrc.loc")
     source ${HOME}/.vimrc.loc
 endif
+"***************最大化窗口***********
+function! Zoom ()
+    " check if is the zoomed state (tabnumber > 1 && window == 1)
+    if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
+        let l:cur_winview = winsaveview()
+        let l:cur_bufname = bufname('')
+        tabclose
+
+        " restore the view
+        if l:cur_bufname == bufname('')
+            call winrestview(cur_winview)
+        endif
+    else
+        tab split
+    endif
+endfunction
+
+nmap <leader>z :call Zoom()<CR>
