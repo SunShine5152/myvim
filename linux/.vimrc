@@ -427,3 +427,8 @@ function! Zoom ()
 endfunction
 
 nmap <leader>z :call Zoom()<CR>
+
+" ===
+" === VIM-MARK
+" ===
+nmap <leader>n :MarkClear<CR>
