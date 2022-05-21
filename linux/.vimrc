@@ -2,7 +2,7 @@
 let mapleader="\<space>"
 "<<<map
 map s <nop>
-map q <nop>
+map q q:
 "map S :w<CR>
 "map Q :q
 "map <C-e> :only<CR>
