@@ -8,6 +8,7 @@ map q q:
 "map <C-e> :only<CR>
 map <LEADER>s :w<CR>
 map <LEADER>q :q
+nmap <CR> o<Esc>
 "open quickerfix
 map <LEADER>c :cw<CR>
 
@@ -36,7 +37,7 @@ map ; :
 noremap K 5k
 noremap J 5j
 noremap O $
-noremap U 0
+noremap U 0w
 noremap H 7h
 noremap L 7l
 map <C-h> :0<CR>
@@ -62,8 +63,7 @@ map sk :set nosplitbelow<CR>:split<CR>
 map sj :set splitbelow<CR>:split<CR>
 map sv <C-w>t<C-w>H
 map sp <C-w>t<C-w>K
-"map sk :split
-map sl :set splitright<CR>:vsplit<CR>
+map sc <C-w>r
 "map sl :vsplit
 "map <LEADER>l <C-w>l
 map <LEADER>l <C-w>w
@@ -75,16 +75,16 @@ map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
 "标签设置
-map tn :tabnew<CR>
-map tc :tabclose<CR>
-map ty :tabonly<CR>
-map tj :tabn<CR>
-map tk :tabp<CR>
-map tu :tabfirst<CR>
-map to :tablast<CR>
+map fn :tabnew<CR>
+map fc :tabclose<CR>
+map fy :tabonly<CR>
+map fj :tabn<CR>
+map fk :tabp<CR>
+map fu :tabfirst<CR>
+map fo :tablast<CR>
 " Move the tabs with tmn and tmi
-map th :-tabmove<CR>
-map tl :+tabmove<CR>
+map fh :-tabmove<CR>
+map fl :+tabmove<CR>
 ">>>
 "<<<常规设置
 set nocompatible
