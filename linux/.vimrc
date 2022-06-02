@@ -8,10 +8,8 @@ map q q:
 "map <C-e> :only<CR>
 map <LEADER>s :w<CR>
 map <LEADER>q :q
-nmap <CR> o<Esc>
 "open quickerfix
 map <LEADER>c :cw<CR>
-
 "这段脚本添加后可以使用alt键像ctrl键一样映射。
 for i in range(97,122)
   let c = nr2char(i)
@@ -27,7 +25,8 @@ noremap <A-m> <S-*>
 noremap <A-n> <S-#>
 "新窗口打开和预览
 "map <A-e> <C-w>}
-map <A-w> <c-w>]
+map <A-w> <C-w>]
+
 
 map <LEADER>e :only<CR>
 map <LEADER>rc :vs ~/.vimrc<CR>
@@ -77,7 +76,7 @@ map <right> :vertical resize+5<CR>
 "标签设置
 map fn :tabnew<CR>
 map fc :tabclose<CR>
-map fy :tabonly<CR>
+"map fy :tabonly<CR>
 map fj :tabn<CR>
 map fk :tabp<CR>
 map fu :tabfirst<CR>
@@ -94,6 +93,7 @@ filetype plugin on
 filetype plugin indent on
 set mouse=nv
 set encoding=utf-8
+"set fileencodings=utf-8
 let &t_ut=''
 set tabstop=4
 set shiftwidth=4
@@ -108,9 +108,14 @@ set cursorline
 "set smarttab
 set nobackup
 set ruler
+
 set autoindent
+
 set smartindent
+
 set cindent
+
+
 set clipboard=unnamed
 set noswapfile
 set paste
@@ -118,8 +123,8 @@ set confirm
 set t_Co=256
 set cmdheight=1
 "list设置显示行尾的空格和tab
-set list
-set listchars=tab:>-,trail:-
+"set list
+"set listchars=tab:>-,trail:-
 "set backspace=indent,eol,start
 set showcmd
 "<<<?????"
@@ -148,6 +153,7 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" All of your Plugins must be added before the following line
 "Plugin 'hzchirs/vim-material'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/taglist.vim'
@@ -169,7 +175,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'inkarkat/vim-ingo-library'
 Plugin 'inkarkat/vim-mark'
 Plugin 'skywind3000/vim-preview'
-" All of your Plugins must be added before the following line
+Plugin 'MattesGroeger/vim-bookmarks'
+"Plugin 'https://github.com/MattesGroeger/vim-bookmarks'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Brief help
@@ -310,7 +317,6 @@ nmap <f4> :cprevious<CR>
 "cs add /home/ace_li/workspace/temp/OX01G10_rom/cscope.out /home/ace_li/workspace/temp/OX01G10_rom
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 if has("cscope")
-    "set csprg=/home/ace_li/bin/cscope/bin/cscope
     set csprg=/usr/bin/cscope
     set csto=1
     set cst
@@ -401,6 +407,7 @@ inoremap <A-i> <C-\><C-o>:PreviewScroll -1<CR>
 inoremap <A-o> <C-\><C-o>:PreviewScroll +1<CR>
 
 
+"noremap <A-p> :PreviewSignature<CR>
 set noshowmode
 noremap <A-p> :PreviewSignature!<CR>
 inoremap <A-p> <c-\><c-o>:PreviewSignature!<CR>
@@ -433,3 +440,21 @@ nmap <leader>z :call Zoom()<CR>
 " === VIM-MARK
 " ===
 nmap <leader>n :MarkClear<CR>
+" ===
+" === VIM-BOOKMARKS
+" ===
+let g:bookmark_sign = '>>'
+let g:bookmark_annotation_sign = '##'
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_highlight_lines = 0
+let g:bookmark_show_warning = 1
+let g:bookmark_show_toggle_warning = 1
+let g:bookmark_display_annotation = 1
+let g:bookmark_location_list = 1
+let g:bookmark_auto_close = 1
+let g:bookmark_center = 0
+let g:bookmark_manage_per_buffer = 1
+noremap ms :BookmarkSave ./.vim-bookmarks<CR>
+noremap ml :BookmarkLoad ./.vim-bookmarks<CR>
+
