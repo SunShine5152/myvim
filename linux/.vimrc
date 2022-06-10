@@ -41,8 +41,8 @@ noremap H 7h
 noremap L 7l
 map <C-h> :0<CR>
 map <C-l> :$<CR>
-noremap = nzz
-noremap - Nzz
+noremap n nzz
+noremap N Nzz
 ">>>
 "<<ctrl-c,ctrl-v
 ">>>
@@ -128,7 +128,7 @@ set cmdheight=1
 "set backspace=indent,eol,start
 set showcmd
 "<<<?????"
-"set scrolloff=5
+set scrolloff=5
 "set tw=0
 "set indentexpr=
 ">>>
@@ -201,6 +201,11 @@ nmap <C-v> "+p
 " === CTAGS
 " ===
 set tags=./tags,./TAGS,tags;~,TAGS;~
+"更新ctags标签文件快捷键设置
+noremap <F5> :!ctags -R<CR>
+"Vim 的自动命令功能可以让我们在每次事件发生时调用指定的命令. 例如: 缓冲区的创建, 打开, 写入文件等. 所以可以创建一个自动命令, 每次保存文件时来调用 ctags 命令:
+autocmd BufWritePost * call system("ctags -R")
+"ctags -R --exclude=PATH/*:用exclude选项可以排除某些文件生成tags
 " ===
 " === TAGLIST
 " ===

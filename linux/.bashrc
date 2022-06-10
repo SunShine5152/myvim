@@ -116,7 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
+#export PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
+export PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;31m\]\A\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
 export PATH=/home/ace_li/bin/cscope/bin:$PATH
 alias vim='/home/ace_li/bin/vim82/bin/vim'
 source /home/ace_li/Document/z/z.sh
