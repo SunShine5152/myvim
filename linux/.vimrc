@@ -18,7 +18,7 @@ for i in range(97,122)
 endfor
 "jump to define
 map <A-s> <C-o>
-map <A-d> <C-]>
+map <A-d> <C-]>zz
 map <A-f> <C-i>
 "高亮搜索
 noremap <A-m> <S-*>
@@ -32,7 +32,10 @@ map <LEADER>e :only<CR>
 map <LEADER>rc :vs ~/.vimrc<CR>
 map <LEADER>sr :source ~/.vimrc<CR>
 map <LEADER>tm :vs ~/.tmux.conf<CR>
+map <LEADER>re :reg<CR>
 map ; :
+"noremap j gjzz
+"noremap k gkzz
 noremap K 5k
 noremap J 5j
 noremap O $
@@ -158,7 +161,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/cscope.vim'
+"Plugin 'vim-scripts/cscope.vim'
 Plugin 'wesleyche/SrcExpl'
 Plugin 'altercation/vim-colors-solarized'
 "Plugin 'tomasr/molokai'
@@ -195,8 +198,8 @@ map c3 $a    //OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
 map x1 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
 map x2 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
 map x3 $a    <!-- OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
-vmap <C-c> "+y
-nmap <C-v> "+p
+"vmap <C-c> "+y
+"nmap <C-v> "+p
 " ===
 " === CTAGS
 " ===
@@ -204,7 +207,7 @@ set tags=./tags,./TAGS,tags;~,TAGS;~
 "更新ctags标签文件快捷键设置
 noremap <F5> :!ctags -R<CR>
 "Vim 的自动命令功能可以让我们在每次事件发生时调用指定的命令. 例如: 缓冲区的创建, 打开, 写入文件等. 所以可以创建一个自动命令, 每次保存文件时来调用 ctags 命令:
-autocmd BufWritePost * call system("ctags -R")
+"autocmd BufWritePost * call system("ctags -R")
 "ctags -R --exclude=PATH/*:用exclude选项可以排除某些文件生成tags
 " ===
 " === TAGLIST
@@ -223,7 +226,7 @@ let Tlist_Use_Right_Window=0
 let Tlist_WinHeight=100
 let Tlist_WinWidth=40
 "更新ctags标签文件快捷键设置
-"noremap <F6> :!ctags -R
+noremap <F6> :TlistUpdate<CR>
 "设置taglist打开关闭的快捷键
 noremap <F7> :TlistToggle<CR>
 " ===
@@ -392,6 +395,7 @@ let g:SrcExpl_nextDefKey = "<F4>"
 " ===
 " === CTRLP
 " ===
+"<c-pp>         -调出搜索框
 "<c-j>, <c-k>   - 在搜索结果里上下移动
 "<c-v>, <c-x>   - 以水平或垂直的方式将光标选择的文件打开
 "<c-n>, <c-p>   - 可以选择上一个或下一个搜索条件
