@@ -176,7 +176,8 @@ Plugin 'terryma/vim-smooth-scroll'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'inkarkat/vim-ingo-library'
-Plugin 'inkarkat/vim-mark'
+"Plugin 'inkarkat/vim-mark'
+Plugin 't9md/vim-quickhl'
 Plugin 'skywind3000/vim-preview'
 Plugin 'MattesGroeger/vim-bookmarks'
 "Plugin 'https://github.com/MattesGroeger/vim-bookmarks'
@@ -189,6 +190,7 @@ filetype plugin indent on    " required
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
+
 " ===
 " ===	colorschemes 
 " ===
@@ -454,7 +456,16 @@ nmap <leader>z :call Zoom()<CR>
 " ===
 " === VIM-MARK
 " ===
-nmap <leader>n :MarkClear<CR>
+"nmap <leader>n :MarkClear<CR>
+
+" ===
+" === VIM-quickhl
+" ===
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <Space>n <Plug>(quickhl-manual-reset)
+xmap <Space>n <Plug>(quickhl-manual-reset)
+
 " ===
 " === VIM-BOOKMARKS
 " ===
