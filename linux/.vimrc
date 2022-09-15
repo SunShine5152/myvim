@@ -7,9 +7,10 @@ map q q:
 "map Q :q
 "map <C-e> :only<CR>
 map <LEADER>s :w<CR>
-map <LEADER>q :q
+map <LEADER>q :q<CR>
 "open quickerfix
 map <LEADER>c :cw<CR>
+map <LEADER>cq :cclose<CR>
 "这段脚本添加后可以使用alt键像ctrl键一样映射。
 for i in range(97,122)
   let c = nr2char(i)
@@ -38,12 +39,12 @@ map ; :
 "noremap k gkzz
 noremap K 5k
 noremap J 5j
-noremap O $
-noremap U 0w
-noremap H 7h
-noremap L 7l
-map <C-h> :0<CR>
-map <C-l> :$<CR>
+noremap F $
+noremap S 0w
+noremap U 7h
+noremap O 7l
+"map <C-h> :0<CR>
+"map <C-l> :$<CR>
 noremap n nzz
 noremap N Nzz
 ">>>
@@ -95,8 +96,10 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on
 set mouse=nv
-set encoding=utf-8
-"set fileencodings=utf-8
+"set encoding=utf-8
+"set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set enc=utf8
 let &t_ut=''
 set tabstop=4
 set shiftwidth=4
@@ -111,14 +114,9 @@ set cursorline
 "set smarttab
 set nobackup
 set ruler
-
 set autoindent
-
 set smartindent
-
 set cindent
-
-
 set clipboard=unnamed
 set noswapfile
 set paste
@@ -135,7 +133,8 @@ set scrolloff=5
 "set tw=0
 "set indentexpr=
 ">>>
-"set foldmethod=indent
+set foldmethod=manual
+set foldcolumn=0
 "set foldlevel=99
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -163,8 +162,9 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'vim-scripts/cscope.vim'
 Plugin 'wesleyche/SrcExpl'
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
 "Plugin 'tomasr/molokai'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'Lokaltog/vim-powerline'
 "Plugin 'vim-airline/vim-airline'
 "Plugin 'ycm-core/YouCompleteMe'
@@ -180,6 +180,7 @@ Plugin 'inkarkat/vim-mark'
 Plugin 'skywind3000/vim-preview'
 Plugin 'MattesGroeger/vim-bookmarks'
 "Plugin 'https://github.com/MattesGroeger/vim-bookmarks'
+"Plugin 'LucHermitte/VimFold4C'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Brief help
@@ -187,8 +188,11 @@ filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-">>>
-
+"
+" ===
+" ===	colorschemes 
+" ===
+colorscheme molokai_dark
 " ===
 " ===	FUGITIVE 
 " ===
@@ -228,11 +232,13 @@ let Tlist_WinWidth=40
 "更新ctags标签文件快捷键设置
 noremap <F6> :TlistUpdate<CR>
 "设置taglist打开关闭的快捷键
-noremap <F7> :TlistToggle<CR>
+"noremap <F7> :TlistToggle<CR>
+noremap ss :TlistToggle<CR>
 " ===
 " === NERDTree
 " ===
 map ff :NERDTreeToggle<CR>
+map <F7> :NERDTreeRefreshRoot<CR>
 let NERDTreeMapOpenExpl = ""
 let NERDTreeMapUpdir = ""
 let NERDTreeMapUpdirKeepOpen = "l"
@@ -249,10 +255,10 @@ let NERDTreeShowBookmarks=1
 " ===
 " ===vim-colors-solarized'
 " ===
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-syntax enable
-set background=dark
+"let g:solarized_termcolors=256
+"let g:solarized_contrast="high"
+"syntax enable
+"set background=dark
 "colorscheme solarized
 "call togglebg#map("<F5>")
 " ===
@@ -260,7 +266,7 @@ set background=dark
 " ===
 "let g:molokai_original = 1
 "let g:rehash256 = 1
-
+"colorscheme molokai
 " ===
 " ===colorscheme material
 " ===
