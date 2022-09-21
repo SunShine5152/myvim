@@ -116,8 +116,22 @@ if ! shopt -oq posix; then
   fi
 fi
 
+git_branch()
+{
+   branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
+   if [ "${branch}" != "" ]
+   then
+       if [ "${branch}" = "(no branch)" ]
+       then
+           branch="(`git rev-parse --short HEAD`...)"
+       fi
+       echo "($branch)"
+   fi
+}
+PS1='\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;31m\]\A\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]$(git_branch)\[\033[00m\]\n\[\033[01;32m\]\$ '
+
 #export PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
-export PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;31m\]\A\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
+#export PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;31m\]\A\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
 export PATH=/home/ace_li/bin/cscope/bin:$PATH
 alias vim='/home/ace_li/bin/vim82/bin/vim'
 source /home/ace_li/Document/z/z.sh
