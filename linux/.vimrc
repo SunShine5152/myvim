@@ -162,10 +162,11 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'vim-scripts/cscope.vim'
 Plugin 'wesleyche/SrcExpl'
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'tomasr/molokai'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'Lokaltog/vim-powerline'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+"Plugin 'flazz/vim-colorschemes'
+Plugin 'morhetz/gruvbox'
+"Plugin 'Lokaltog/vim-powerline'
 "Plugin 'vim-airline/vim-airline'
 "Plugin 'ycm-core/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
@@ -177,9 +178,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'inkarkat/vim-ingo-library'
 "Plugin 'inkarkat/vim-mark'
-Plugin 't9md/vim-quickhl'
 Plugin 'skywind3000/vim-preview'
 Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 't9md/vim-quickhl'
 "Plugin 'https://github.com/MattesGroeger/vim-bookmarks'
 "Plugin 'LucHermitte/VimFold4C'
 call vundle#end()            " required
@@ -192,15 +193,15 @@ filetype plugin indent on    " required
 "
 
 " ===
-" ===	colorschemes 
-" ===
-colorscheme molokai_dark
-" ===
 " ===	FUGITIVE 
 " ===
 map c1 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin*/<ESC>
 map c2 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
 map c3 $a    //OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
+map z1 0i//<ESC>
+map z2 0xx<ESC>
+map z3 o<ESC>i/*BEGIN,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin<ESC>
+map z4 o<ESC>iEND,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
 map x1 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
 map x2 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
 map x3 $a    <!-- OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
@@ -254,6 +255,13 @@ let NERDTreeMapChangeRoot = "y"
 let NERDTreeWinPos='right'
 let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
+
+" ===
+" ===	colorschemes 
+" ===
+"colorscheme molokai_dark
+"colorscheme gruvbox
+
 " ===
 " ===vim-colors-solarized'
 " ===
@@ -266,9 +274,9 @@ let NERDTreeShowBookmarks=1
 " ===
 " ===colorscheme molokai
 " ===
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-"colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
 " ===
 " ===colorscheme material
 " ===
@@ -320,7 +328,7 @@ let NERDTreeShowBookmarks=1
 "use c find call place
 "use f open include file
 "nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-g> :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-f> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
