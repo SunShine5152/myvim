@@ -95,7 +95,8 @@ filetype on
 filetype indent on
 filetype plugin on
 filetype plugin indent on
-set mouse=nv
+"set mouse=nv
+set mouse=r
 "set encoding=utf-8
 "set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
@@ -124,9 +125,9 @@ set confirm
 set t_Co=256
 set cmdheight=1
 "list设置显示行尾的空格和tab
-"set list
-"set listchars=tab:>-,trail:-
-"set backspace=indent,eol,start
+set list
+set listchars=tab:>-,trail:-
+set backspace=indent,eol,start
 set showcmd
 "<<<?????"
 set scrolloff=5
@@ -143,6 +144,8 @@ set laststatus=2
 "set autochdir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 ">>>
+"<<<complete
+set completeopt=longest,menu
 
 "=================================================================================================
 "=================================================================================================
@@ -167,7 +170,7 @@ Plugin 'tomasr/molokai'
 "Plugin 'flazz/vim-colorschemes'
 Plugin 'morhetz/gruvbox'
 "Plugin 'Lokaltog/vim-powerline'
-"Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline'
 "Plugin 'ycm-core/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
@@ -181,8 +184,6 @@ Plugin 'inkarkat/vim-ingo-library'
 Plugin 'skywind3000/vim-preview'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 't9md/vim-quickhl'
-"Plugin 'https://github.com/MattesGroeger/vim-bookmarks'
-"Plugin 'LucHermitte/VimFold4C'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Brief help
@@ -195,16 +196,18 @@ filetype plugin indent on    " required
 " ===
 " ===	FUGITIVE 
 " ===
-map c1 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin*/<ESC>
-map c2 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
-map c3 $a    //OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
 map z1 0i//<ESC>
 map z2 0xx<ESC>
-map z3 o<ESC>i/*BEGIN,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin<ESC>
-map z4 o<ESC>iEND,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
-map x1 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
-map x2 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
-map x3 $a    <!-- OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
+"map c1 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin*/<ESC>
+"map c2 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
+map x1 o<ESC>i/*BEGIN,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin<ESC>
+map x2 o<ESC>iEND,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
+map x3 $a    //OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
+"map z3 o<ESC>i/*BEGIN,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin<ESC>
+"map z4 o<ESC>iEND,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
+map c1 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
+map c2 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
+map c3 $a    <!-- OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
 "vmap <C-c> "+y
 "nmap <C-v> "+p
 " ===
@@ -213,7 +216,7 @@ map x3 $a    <!-- OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --
 set tags=./tags,./TAGS,tags;~,TAGS;~
 "更新ctags标签文件快捷键设置
 noremap <F5> :!ctags -R<CR>
-"Vim 的自动命令功能可以让我们在每次事件发生时调用指定的命令. 例如: 缓冲区的创建, 打开, 写入文件等. 所以可以创建一个自动命令, 每次保存文件时来调用 ctags 命令:
+"Vim 的自动命令功能可以让我们在每次事件发生时调用指定的命. 例如: 缓冲区的创建, 打开, 写入文件等. 所以可以创建一个自动命令, 每次保存文件时来调用 ctags 命令:
 "autocmd BufWritePost * call system("ctags -R")
 "ctags -R --exclude=PATH/*:用exclude选项可以排除某些文件生成tags
 " ===
@@ -232,6 +235,8 @@ let Tlist_Use_Right_Window=0
 "设置taglist窗口大小
 let Tlist_WinHeight=100
 let Tlist_WinWidth=40
+"打开taglist时，光标保留在taglist窗口
+let Tlist_GainFocus_On_ToggleOpen = 1
 "更新ctags标签文件快捷键设置
 noremap <F6> :TlistUpdate<CR>
 "设置taglist打开关闭的快捷键
