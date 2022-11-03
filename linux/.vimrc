@@ -482,18 +482,32 @@ xmap <Space>n <Plug>(quickhl-manual-reset)
 " ===
 " === VIM-BOOKMARKS
 " ===
-let g:bookmark_sign = '>>'
-let g:bookmark_annotation_sign = '##'
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+let g:bookmark_highlight_lines = 1
+"let g:bookmark_sign = '>>'
+"let g:bookmark_annotation_sign = '##'
+let g:bookmark_sign = '♥'
+let g:bookmark_annotation_sign = '≡'
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
 let g:bookmark_highlight_lines = 0
 let g:bookmark_show_warning = 1
 let g:bookmark_show_toggle_warning = 1
 let g:bookmark_display_annotation = 1
+let g:bookmark_disable_ctrlp = 1
 let g:bookmark_location_list = 1
 let g:bookmark_auto_close = 1
 let g:bookmark_center = 0
 let g:bookmark_manage_per_buffer = 1
 noremap ms :BookmarkSave ./.vim-bookmarks<CR>
 noremap ml :BookmarkLoad ./.vim-bookmarks<CR>
-
+nmap mm :BookmarkToggle<CR>
+nmap mi :BookmarkAnnotate<CR>
+nmap mn :BookmarkNext<CR>
+nmap mp :BookmarkPrev<CR>
+nmap ma :BookmarkShowAll<CR>
+nmap mc :BookmarkClear<CR>
+nmap mx :BookmarkClearAll<CR>
+nmap mkk :BookmarkMoveUp
+nmap mjj :BookmarkMoveDown

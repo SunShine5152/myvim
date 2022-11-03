@@ -51,12 +51,19 @@ for i in range(97,122)
   exec "map! \e".c." <M-".c.">"
 endfor
 "jump to define
-map <A-s> <C-o>
-map <A-d> <C-]>
-map <A-f> <C-i>
+"map <A-s> <C-o>
+"map <A-d> <C-]>
+"map <A-f> <C-i>
+
+map <C-s> <C-o>
+map <C-d> <C-]>
+map <C-f> <C-i>
+
 "高亮搜索
-noremap <A-m> <S-*>
-noremap <A-n> <S-#>
+"noremap <A-m> <S-*>
+"noremap <A-n> <S-#>
+noremap <C-m> <S-*>
+noremap <C-n> <S-#>
 
 map <LEADER>e :only<CR>
 map <LEADER>rc :vs $VIMRUNTIME\..\_vimrc<CR>
@@ -125,7 +132,7 @@ filetype plugin indent on
 set mouse=nv
 set encoding=utf-8
 let &t_ut=''
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set expandtab
@@ -254,7 +261,7 @@ let Tlist_Show_One_File=1
 "taglist为最后一个窗口时退出vim
 let Tlist_Exit_OnlyWindow=1
 "设置ctags路径
-let Tlist_Ctags_Cmd='/usr/bin/ctags'
+let Tlist_Ctags_Cmd='D:\SoftWare\ctags\ctags58\ctags.exe'
 "启动vim后自动打开taglist窗口
 let Tlist_Auto_Open=0
 "taglist窗口显示在右侧，缺省为左侧

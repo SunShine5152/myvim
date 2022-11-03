@@ -128,18 +128,18 @@ git_branch()
        echo "($branch)"
    fi
 }
+#PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W$(git_branch)\$ '
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W$(git_branch)\[\033[00m\]\$ '
 PS1='\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;31m\]\A\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]$(git_branch)\[\033[00m\]\n\[\033[01;32m\]\$ '
 
-#export PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
-#export PS1="\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;31m\]\A\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
 export PATH=/home/ace_li/bin/cscope/bin:$PATH
 alias vim='/home/ace_li/bin/vim82/bin/vim'
 source /home/ace_li/Document/z/z.sh
 alias j='z'
 alias tmux='tmux -2'
 
-export BA_ELF_HOME=/opt/ba-elf-ov494
 export CLANG_HOME=/opt/clang
-export PATH=$BA_ELF_HOME/bin:$CLANG_HOME/bin:$PATH
+export PATH=$CLANG_HOME/bin:$PATH
 export LD_LIBRARY_PATH=$CLANG_HOME/lib:$LD_LIBRARY_PATH
 
+alias t='source /root/Document/tag.sh'
