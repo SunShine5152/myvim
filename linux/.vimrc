@@ -39,8 +39,8 @@ map ; :
 "noremap k gkzz
 noremap K 5k
 noremap J 5j
-noremap F $
-noremap S 0w
+noremap W 0w
+noremap E $
 noremap U 7h
 noremap O 7l
 "map <C-h> :0<CR>
@@ -78,16 +78,16 @@ map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
 "标签设置
-map fn :tabnew<CR>
-map fc :tabclose<CR>
+"map tn :tabnew<CR>
+"map tc :tabclose<CR>
 "map fy :tabonly<CR>
-map fj :tabn<CR>
-map fk :tabp<CR>
-map fu :tabfirst<CR>
-map fo :tablast<CR>
+"map tj :tabn<CR>
+"map tk :tabp<CR>
+"map tu :tabfirst<CR>
+"map to :tablast<CR>
 " Move the tabs with tmn and tmi
-map fh :-tabmove<CR>
-map fl :+tabmove<CR>
+"map th :-tabmove<CR>
+"map tl :+tabmove<CR>
 ">>>
 "<<<常规设置
 set nocompatible
@@ -103,16 +103,17 @@ set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set enc=utf8
 let &t_ut=''
 set tabstop=4
+set smarttab
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set nu
-set relativenumber
+"set nonu
+"set relativenumber
+set nu rnu
 syntax enable
 syntax on
-set cursorline
+"set cursorline
 "set cursorcolumn
-"set smarttab
 set nobackup
 set ruler
 set autoindent
@@ -120,7 +121,44 @@ set smartindent
 set cindent
 set clipboard=unnamed
 set noswapfile
-set paste
+
+"inset mode hotkey
+"set paste
+set pastetoggle=<F11>
+inoremap jk <ESC>
+inoremap <A-u> <down>
+inoremap <A-i> <up>
+inoremap <A-y> <left>
+inoremap <A-o> <right>
+
+inoremap <c-a> <home>
+inoremap <c-e> <end>
+inoremap <c-d> <del>
+
+noremap <silent><tab>m :tabnew<cr>
+noremap <silent><tab>e :tabclose<cr>
+noremap <silent><tab>n :tabn<cr>
+noremap <silent><tab>p :tabp<cr>
+noremap <silent><tab>h :-tabmove<CR>
+noremap <silent><tab>l :+tabmove<CR>
+
+"noremap <silent><leader>t :tabnew<cr>
+"noremap <silent><leader>g :tabclose<cr>
+noremap <silent><leader>1 :tabn 1<cr>
+noremap <silent><leader>2 :tabn 2<cr>
+noremap <silent><leader>3 :tabn 3<cr>
+noremap <silent><leader>4 :tabn 4<cr>
+noremap <silent><leader>5 :tabn 5<cr>
+noremap <silent><leader>6 :tabn 6<cr>
+noremap <silent><leader>7 :tabn 7<cr>
+noremap <silent><leader>8 :tabn 8<cr>
+noremap <silent><leader>9 :tabn 9<cr>
+noremap <silent><leader>0 :tabn 10<cr>
+noremap <silent><s-tab> :tabnext<CR>
+inoremap <silent><s-tab> <ESC>:tabnext<CR>
+
+noremap  <expr>0     col('.') == 1 ? '^': '0'
+
 set confirm
 set t_Co=256
 set cmdheight=1
@@ -129,6 +167,8 @@ set list
 set listchars=tab:>-,trail:-
 set backspace=indent,eol,start
 set showcmd
+"set showmatch
+"set matchtime=1
 "<<<?????"
 set scrolloff=5
 "set tw=0
@@ -253,7 +293,7 @@ let NERDTreeMapUpdirKeepOpen = "l"
 let NERDTreeMapOpenSplit = ""
 let NERDTreeOpenVSplit = ""
 let NERDTreeMapActivateNode = "i"
-let NERDTreeMapOpenInTab = "o"
+let NERDTreeMapOpenInTab = "t"
 let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "n"
 let NERDTreeMapChangeRoot = "y"
@@ -433,8 +473,8 @@ noremap <A-c> :PreviewClose<CR>
 
 noremap <A-i> :PreviewScroll -1<CR>
 noremap <A-o> :PreviewScroll +1<CR>
-inoremap <A-i> <C-\><C-o>:PreviewScroll -1<CR>
-inoremap <A-o> <C-\><C-o>:PreviewScroll +1<CR>
+"inoremap <A-i> <C-\><C-o>:PreviewScroll -1<CR>
+"inoremap <A-o> <C-\><C-o>:PreviewScroll +1<CR>
 
 
 "noremap <A-p> :PreviewSignature<CR>
@@ -511,3 +551,35 @@ nmap mc :BookmarkClear<CR>
 nmap mx :BookmarkClearAll<CR>
 nmap mkk :BookmarkMoveUp
 nmap mjj :BookmarkMoveDown
+
+"fun! Redraw()
+"  let l = winline()
+"  let cmd = l * 2 <= winheight(0) + 1 ? l <= (&so + 1) ? 'zb' : 'zt' : 'zz'
+"  return cmd
+"endf
+"nnoremap <expr><C-e> Redraw()
+
+
+" Open Explore in new tab with current directory
+function! Open_Explore(where)
+    let l:path = expand("%:p:h")
+    if l:path == ''
+        let l:path = getcwd()
+    endif
+    if a:where == 0
+        exec 'Explore '.fnameescape(l:path)
+    elseif a:where == 1
+        exec 'vnew'
+        exec 'Explore '.fnameescape(l:path)
+    else
+        exec 'tabnew'
+        exec 'Explore '.fnameescape(l:path)
+    endif
+endfunc
+
+nmap <A-n> :call Open_Explore(2)<CR>
+
+
+
+
+
