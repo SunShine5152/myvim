@@ -224,6 +224,8 @@ Plugin 'inkarkat/vim-ingo-library'
 Plugin 'skywind3000/vim-preview'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 't9md/vim-quickhl'
+Plugin 'guns/xterm-color-table.vim.git'
+Plugin 'yianwillis/vimcdoc'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Brief help
@@ -577,9 +579,10 @@ function! Open_Explore(where)
     endif
 endfunc
 
-nmap <A-n> :call Open_Explore(2)<CR>
+nmap <A-b> :call Open_Explore(2)<CR>
 
-
-
+"set num color,should set after colorscheme
+"highlight LineNr cterm=bold ctermfg=red
+"highlight LineNr cterm=bold ctermbg=black
 
 

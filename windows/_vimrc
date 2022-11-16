@@ -4,7 +4,7 @@ source $VIMRUNTIME/mswin.vim
 behave mswin
 
 "***ace add begin***
-colorscheme elflord
+"colorscheme elflord
 set guifont=Courier_New:h14:cANSI
 "***ace add end***
 
@@ -36,14 +36,15 @@ endfunction
 let mapleader="\<space>"
 "<<<map
 map s <nop>
+map q q:
 "map S :w<CR>
-map Q :q
+"map Q :q
 "map <C-e> :only<CR>
 map <LEADER>s :w<CR>
-map <LEADER>q :q
+map <LEADER>q :q<CR>
 "open quickerfix
 map <LEADER>c :cw<CR>
-
+map <LEADER>cq :cclose<CR>
 "这段脚本添加后可以使用alt键像ctrl键一样映射。
 for i in range(97,122)
   let c = nr2char(i)
@@ -69,17 +70,18 @@ map <LEADER>e :only<CR>
 map <LEADER>rc :vs $VIMRUNTIME\..\_vimrc<CR>
 "map <LEADER>sr :source $VIMRUNTIME\..\_vimrc<CR>
 "map <LEADER>tm :vs ~/.tmux.conf<CR>
+map <LEADER>re :reg<CR>
 map ; :
 noremap K 5k
 noremap J 5j
-noremap O $
-noremap U 0
-noremap H 7h
-noremap L 7l
+noremap E $
+noremap W 0$
+noremap U 7h
+noremap 0 7l
 map <C-h> :0<CR>
 map <C-l> :$<CR>
-noremap = nzz
-noremap - Nzz
+noremap n nzz
+noremap N Nzz
 ">>>
 "<<ctrl-c,ctrl-v
 ">>>
@@ -101,6 +103,7 @@ map sv <C-w>t<C-w>H
 map sp <C-w>t<C-w>K
 "map sk :split
 map sl :set splitright<CR>:vsplit<CR>
+map sc <C-w>r
 "map sl :vsplit
 "map <LEADER>l <C-w>l
 map <LEADER>l <C-w>w
@@ -112,16 +115,16 @@ map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
 "标签设置
-map fn :tabnew<CR>
-map fc :tabclose<CR>
-map fy :tabonly<CR>
-map fj :tabn<CR>
-map fk :tabp<CR>
-map fu :tabfirst<CR>
-map fo :tablast<CR>
+"map tn :tabnew<CR>
+"map tc :tabclose<CR>
+"map fy :tabonly<CR>
+"map tj :tabn<CR>
+"map tk :tabp<CR>
+"map tu :tabfirst<CR>
+"map to :tablast<CR>
 " Move the tabs with tmn and tmi
-map fh :-tabmove<CR>
-map fl :+tabmove<CR>
+"map th :-tabmove<CR>
+"map tl :+tabmove<CR>
 ">>>
 "<<<常规设置
 set nocompatible
@@ -131,13 +134,17 @@ filetype plugin on
 filetype plugin indent on
 set mouse=nv
 set encoding=utf-8
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set enc=utf8
 let &t_ut=''
 set tabstop=8
+set smarttab
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set nu
-set relativenumber
+"set nu
+"set relativenumber
+set nu rnu
 syntax enable
 syntax on
 set cursorline
@@ -150,7 +157,46 @@ set smartindent
 set cindent
 set clipboard=unnamed
 set noswapfile
-set paste
+
+"inset mode hotkey
+"set paste
+set pastetoggle=<F11>
+inoremap jk <ESC>
+inoremap <A-u> <down>
+inoremap <A-i> <up>
+inoremap <A-y> <left>
+inoremap <A-o> <right>
+
+inoremap <c-a> <home>
+inoremap <c-e> <end>
+inoremap <c-d> <del>
+
+noremap <silent><tab>m :tabnew<cr>
+noremap <silent><tab>e :tabclose<cr>
+noremap <silent><tab>n :tabn<cr>
+noremap <silent><tab>p :tabp<cr>
+noremap <silent><tab>h :-tabmove<CR>
+noremap <silent><tab>l :+tabmove<CR>
+
+"noremap <silent><leader>t :tabnew<cr>
+"noremap <silent><leader>g :tabclose<cr>
+noremap <silent><leader>1 :tabn 1<cr>
+noremap <silent><leader>2 :tabn 2<cr>
+noremap <silent><leader>3 :tabn 3<cr>
+noremap <silent><leader>4 :tabn 4<cr>
+noremap <silent><leader>5 :tabn 5<cr>
+noremap <silent><leader>6 :tabn 6<cr>
+noremap <silent><leader>7 :tabn 7<cr>
+noremap <silent><leader>8 :tabn 8<cr>
+noremap <silent><leader>9 :tabn 9<cr>
+noremap <silent><leader>0 :tabn 10<cr>
+noremap <silent><s-tab> :tabnext<CR>
+inoremap <silent><s-tab> <ESC>:tabnext<CR>
+
+noremap  <expr>0     col('.') == 1 ? '^': '0'
+
+
+
 set confirm
 set t_Co=256
 set cmdheight=1
@@ -202,7 +248,9 @@ language messages zh_CN.utf-8
 " === VBUNDLE                                                                             
 " ===                                                                                     
 filetype off                  " required                                                  
-set shellslash                                                                                           
+set shellslash                                                 
+"set rtp+=~/vimfiles/bundle/Vundle.vim 
+"call vundle#begin('~/vimfiles/bundle')                                            
 set rtp+=J:\software_az\gvim\bundle\Vundle.vim
 
 call vundle#begin('J:\software_az\gvim\bundle')                                                                       
@@ -241,18 +289,29 @@ filetype plugin indent on    " required
 " ===
 " ===	FUGITIVE 
 " ===
-map c1 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin*/<ESC>
-map c2 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
-map c3 $a    //OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
-map x1 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
-map x2 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
-map x3 $a    <!-- OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
-vmap <C-c> "+y
-nmap <C-v> "+p
+map z1 0i//<ESC>
+map z2 0xx<ESC>
+"map c1 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin*/<ESC>
+"map c2 o<ESC>i/*OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
+map x1 o<ESC>i/*BEGIN,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin<ESC>
+map x2 o<ESC>iEND,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
+map x3 $a    //OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
+"map z3 o<ESC>i/*BEGIN,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin<ESC>
+"map z4 o<ESC>iEND,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
+map c1 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
+map c2 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end --><ESC>
+map c3 $a    <!-- OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C --> <ESC>
+"vmap <C-c> "+y
+"nmap <C-v> "+p
 " ===
 " === CTAGS
 " ===
 set tags=./tags,./TAGS,tags;~,TAGS;~
+"更新ctags标签文件快捷键设置
+noremap <F5> :!ctags -R<CR>
+"Vim 的自动命令功能可以让我们在每次事件发生时调用指定的命. 例如: 缓冲区的创建, 打开, 写入文件等. 所以可以创建一个自动命令, 每次保存文件时来调用 ctags 命令:
+"autocmd BufWritePost * call system("ctags -R")
+"ctags -R --exclude=PATH/*:用exclude选项可以排除某些文件生成tags
 " ===
 " === TAGLIST
 " ===
@@ -269,21 +328,25 @@ let Tlist_Use_Right_Window=0
 "设置taglist窗口大小
 let Tlist_WinHeight=100
 let Tlist_WinWidth=40
+"打开taglist时，光标保留在taglist窗口
+let Tlist_GainFocus_On_ToggleOpen = 1
 "更新ctags标签文件快捷键设置
-"noremap <F6> :!ctags -R
+noremap <F6> :TlistUpdate<CR>
 "设置taglist打开关闭的快捷键
-noremap <F7> :TlistToggle<CR>
+"noremap <F7> :TlistToggle<CR>
+noremap ss :TlistToggle<CR>
 " ===
 " === NERDTree
 " ===
 map ff :NERDTreeToggle<CR>
+map <F7> :NERDTreeRefreshRoot<CR>
 let NERDTreeMapOpenExpl = ""
 let NERDTreeMapUpdir = ""
 let NERDTreeMapUpdirKeepOpen = "l"
 let NERDTreeMapOpenSplit = ""
 let NERDTreeOpenVSplit = ""
 let NERDTreeMapActivateNode = "i"
-let NERDTreeMapOpenInTab = "o"
+let NERDTreeMapOpenInTab = "t"
 let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "n"
 let NERDTreeMapChangeRoot = "y"
@@ -410,3 +473,32 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
     \endif<CR>
+
+
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"colorscheme molokai
+
+"gvim default colorscheme
+colorscheme elflord
+
+"colorscheme murphy
+
+"***************最大化窗口***********
+function! Zoom ()
+    " check if is the zoomed state (tabnumber > 1 && window == 1)
+    if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
+        let l:cur_winview = winsaveview()
+        let l:cur_bufname = bufname('')
+        tabclose
+
+        " restore the view
+        if l:cur_bufname == bufname('')
+            call winrestview(cur_winview)
+        endif
+    else
+        tab split
+    endif
+endfunction
+
+nmap <leader>z :call Zoom()<CR>
