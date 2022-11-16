@@ -226,6 +226,7 @@ Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 't9md/vim-quickhl'
 Plugin 'guns/xterm-color-table.vim.git'
 Plugin 'yianwillis/vimcdoc'
+Plugin 'tpope/vim-vinegar'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Brief help
@@ -322,8 +323,9 @@ let NERDTreeShowBookmarks=1
 " ===colorscheme molokai
 " ===
 let g:molokai_original = 1
-let g:rehash256 = 1
-colorscheme molokai
+"let g:rehash256 = 1
+"colorscheme molokai
+colorscheme mymolokai
 " ===
 " ===colorscheme material
 " ===
@@ -586,3 +588,6 @@ nmap <A-b> :call Open_Explore(2)<CR>
 "highlight LineNr cterm=bold ctermbg=black
 
 
+" replace
+noremap <leader>p viw"0p
+noremap <leader>y yiw
