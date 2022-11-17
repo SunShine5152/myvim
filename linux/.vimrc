@@ -28,6 +28,9 @@ noremap <A-n> <S-#>
 "map <A-e> <C-w>}
 map <A-w> <C-w>]
 
+" replace
+noremap <leader>p viw"0p
+noremap <leader>y yiw
 
 map <LEADER>e :only<CR>
 map <LEADER>rc :vs ~/.vimrc<CR>
@@ -189,52 +192,44 @@ set completeopt=longest,menu
 
 "=================================================================================================
 "=================================================================================================
-
 " ===
-" === VBUNDLE
+" === VIM-PLUG
 " ===
-set nocompatible              " be iMproved, required
-filetype off                  " required
+call plug#begin()
+"plug 'hzchirs/vim-material'
+Plug 'VundleVim/Vundle.vim'
+Plug 'vim-scripts/taglist.vim'
+Plug 'scrooloose/nerdtree'
+"Plug 'vim-scripts/cscope.vim'
+Plug 'wesleyche/SrcExpl'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
+"Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+"Plug 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
+"Plug 'ycm-core/YouCompleteMe'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'Yggdroot/indentLine'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'inkarkat/vim-ingo-library'
+"Plug 'inkarkat/vim-mark'
+Plug 'skywind3000/vim-preview'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 't9md/vim-quickhl'
+"Plug 'guns/xterm-color-table.vim.git'
+Plug 'yianwillis/vimcdoc'
+Plug 'tpope/vim-vinegar'
+"Plug '/root/.vim/plugged/vinegar'
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" All of your Plugins must be added before the following line
-"Plugin 'hzchirs/vim-material'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'vim-scripts/cscope.vim'
-Plugin 'wesleyche/SrcExpl'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-"Plugin 'flazz/vim-colorschemes'
-Plugin 'morhetz/gruvbox'
-"Plugin 'Lokaltog/vim-powerline'
-Plugin 'vim-airline/vim-airline'
-"Plugin 'ycm-core/YouCompleteMe'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Yggdroot/indentLine'
-Plugin 'terryma/vim-smooth-scroll'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'inkarkat/vim-ingo-library'
-"Plugin 'inkarkat/vim-mark'
-Plugin 'skywind3000/vim-preview'
-Plugin 'MattesGroeger/vim-bookmarks'
-Plugin 't9md/vim-quickhl'
-Plugin 'guns/xterm-color-table.vim.git'
-Plugin 'yianwillis/vimcdoc'
-Plugin 'tpope/vim-vinegar'
-call vundle#end()            " required
-filetype plugin indent on    " required
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
 
 " ===
 " ===	FUGITIVE 
@@ -323,7 +318,7 @@ let NERDTreeShowBookmarks=1
 " ===colorscheme molokai
 " ===
 let g:molokai_original = 1
-"let g:rehash256 = 1
+let g:rehash256 = 1
 "colorscheme molokai
 colorscheme mymolokai
 " ===
@@ -587,7 +582,10 @@ nmap <A-b> :call Open_Explore(2)<CR>
 "highlight LineNr cterm=bold ctermfg=red
 "highlight LineNr cterm=bold ctermbg=black
 
-
-" replace
-noremap <leader>p viw"0p
-noremap <leader>y yiw
+" ===
+" === VIM-VINEGAR
+" ===
+noremap <silent><tab>6 :VinegarOpen leftabove vs<cr>
+noremap <silent><tab>7 :VinegarOpen vs<cr>
+noremap <silent><tab>8 :VinegarOpen belowright sp<cr>
+noremap <silent><tab>9 :VinegarOpen tabedit<cr>
