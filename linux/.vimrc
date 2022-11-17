@@ -223,8 +223,11 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 't9md/vim-quickhl'
 "Plug 'guns/xterm-color-table.vim.git'
 Plug 'yianwillis/vimcdoc'
-Plug 'tpope/vim-vinegar'
-"Plug '/root/.vim/plugged/vinegar'
+" ===
+" === myself plugin
+" ===
+"Plug 'tpope/vim-vinegar'
+Plug '~/.vim/plugged/vim-vinegar'
 
 call plug#end()
 " You can revert the settings after the call like so:
