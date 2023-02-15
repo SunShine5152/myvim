@@ -28,11 +28,17 @@ noremap <A-n> <S-#>
 "map <A-e> <C-w>}
 map <A-w> <C-w>]
 
-" replace
-noremap <leader>p viw"0p
+" replace one word
 noremap <leader>y yiw
+noremap <leader>p viw"0p
+" replace visual things
+noremap <leader>ay "ay
+noremap <leader>ap "ap
+noremap <leader>by "by
+noremap <leader>bp "bp
 
 map <LEADER>e :only<CR>
+map <LEADER>f :f<CR>
 map <LEADER>rc :vs ~/.vimrc<CR>
 map <LEADER>sr :source ~/.vimrc<CR>
 map <LEADER>tm :vs ~/.tmux.conf<CR>
@@ -98,8 +104,7 @@ filetype on
 filetype indent on
 filetype plugin on
 filetype plugin indent on
-"set mouse=nv
-set mouse=r
+set mouse=a
 "set encoding=utf-8
 "set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
@@ -223,6 +228,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 't9md/vim-quickhl'
 "Plug 'guns/xterm-color-table.vim.git'
 Plug 'yianwillis/vimcdoc'
+
 " ===
 " === myself plugin
 " ===
@@ -281,11 +287,11 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 "更新ctags标签文件快捷键设置
 noremap <F6> :TlistUpdate<CR>
 "设置taglist打开关闭的快捷键
-"noremap <F7> :TlistToggle<CR>
-noremap ss :TlistToggle<CR>
+noremap <silent>ss :TlistToggle<CR>:set number<CR>
 " ===
 " === NERDTree
 " ===
+"map sl :set splitright<CR>:vsplit<CR>
 map ff :NERDTreeToggle<CR>
 map <F7> :NERDTreeRefreshRoot<CR>
 let NERDTreeMapOpenExpl = ""

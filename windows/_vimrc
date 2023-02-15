@@ -61,8 +61,6 @@ map <C-d> <C-]>
 map <C-f> <C-i>
 
 "高亮搜索
-"noremap <A-m> <S-*>
-"noremap <A-n> <S-#>
 noremap <C-m> <S-*>
 noremap <C-n> <S-#>
 
@@ -142,8 +140,8 @@ set smarttab
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-"set nu
-"set relativenumber
+set nu
+set relativenumber
 set nu rnu
 syntax enable
 syntax on
@@ -243,17 +241,23 @@ source $VIMRUNTIME/menu.vim
 "解决consle提示信息输出乱码
 language messages zh_CN.utf-8
 
+" replace one work
+noremap <leader>y yiw
+noremap <leader>p viw"0p
+" replace visual things
+noremap <leader>ay "ay
+noremap <leader>ap "ap
+noremap <leader>by "by
+noremap <leader>bp "bp
 
 " ===                                                                                         
 " === VBUNDLE                                                                             
 " ===                                                                                     
 filetype off                  " required                                                  
-set shellslash                                                 
-"set rtp+=~/vimfiles/bundle/Vundle.vim 
-"call vundle#begin('~/vimfiles/bundle')                                            
-set rtp+=J:\software_az\gvim\bundle\Vundle.vim
+set shellslash                                                                                           
+set rtp+=~/vimfiles/bundle/Vundle.vim 
 
-call vundle#begin('J:\software_az\gvim\bundle')                                                                       
+call vundle#begin('~/vimfiles/bundle')                                                                       
 "Plugin 'hzchirs/vim-material'                                                            
 Plugin 'VundleVim/Vundle.vim'                                                             
 Plugin 'vim-scripts/taglist.vim'                                                          
