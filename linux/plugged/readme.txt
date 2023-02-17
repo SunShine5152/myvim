@@ -1,0 +1,1 @@
+mymolokai直接放在/usr/share/vim/vim74/colors
