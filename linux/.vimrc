@@ -2,7 +2,8 @@
 let mapleader="\<space>"
 "<<<map
 map s <nop>
-map q q:
+map <A-q> q:
+"nmap <CR> o<ESC>
 "map S :w<CR>
 "map Q :q
 "map <C-e> :only<CR>
@@ -50,8 +51,8 @@ noremap K 5k
 noremap J 5j
 noremap W 0w
 noremap E $
-noremap U 7h
-noremap O 7l
+noremap Y 7h
+noremap U 7l
 "map <C-h> :0<CR>
 "map <C-l> :$<CR>
 noremap n nzz
@@ -75,7 +76,7 @@ map sk :set nosplitbelow<CR>:split<CR>
 map sj :set splitbelow<CR>:split<CR>
 map sv <C-w>t<C-w>H
 map sp <C-w>t<C-w>K
-map sc <C-w>r
+"map sc <C-w>r
 "map sl :vsplit
 "map <LEADER>l <C-w>l
 map <LEADER>l <C-w>w
@@ -201,20 +202,15 @@ set completeopt=longest,menu
 " === VIM-PLUG
 " ===
 call plug#begin()
-"plug 'hzchirs/vim-material'
 Plug 'VundleVim/Vundle.vim'
 Plug 'vim-scripts/taglist.vim'
 Plug 'scrooloose/nerdtree'
-"Plug 'vim-scripts/cscope.vim'
 Plug 'wesleyche/SrcExpl'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tomasr/molokai'
-"Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
-"Plug 'Lokaltog/vim-powerline'
 Plug 'vim-airline/vim-airline'
 "Plug 'ycm-core/YouCompleteMe'
-Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Yggdroot/indentLine'
@@ -222,12 +218,17 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'inkarkat/vim-ingo-library'
-"Plug 'inkarkat/vim-mark'
 Plug 'skywind3000/vim-preview'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 't9md/vim-quickhl'
-"Plug 'guns/xterm-color-table.vim.git'
 Plug 'yianwillis/vimcdoc'
+Plug 'luochen1990/rainbow'
+Plug 'preservim/nerdcommenter'
+Plug 'mileszs/ack.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  },
+Plug 'junegunn/fzf.vim',
+
 
 " ===
 " === myself plugin
@@ -250,6 +251,7 @@ map z2 0xx<ESC>
 map x1 o<ESC>i/*BEGIN,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin<ESC>
 map x2 o<ESC>iEND,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
 map x3 $a    //OV ace.li add it @<C-R>=strftime("20%y%m%d")<CR> for <C-R>C <ESC>
+map x4 $a          /*!< <C-R>C */<ESC>
 "map z3 o<ESC>i/*BEGIN,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin<ESC>
 "map z4 o<ESC>iEND,OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> end*/<ESC>
 map c1 o<ESC>i<!-- OV ace.li fix <C-R>C @<C-R>=strftime("20%y%m%d")<CR> begin --><ESC>
@@ -491,6 +493,7 @@ noremap <A-p> :PreviewSignature!<CR>
 inoremap <A-p> <c-\><c-o>:PreviewSignature!<CR>
 "*****************************c模板********************
 "autocmd BufNewFile *.c 0r /home/lyj/.vim/template/c.tlp
+autocmd BufNewFile *.c 0r ~/.vim/template/c.tlp
 
 if filereadable($HOME."/.vimrc.loc")
     source ${HOME}/.vimrc.loc
@@ -598,3 +601,77 @@ noremap <silent><tab>6 :VinegarOpen leftabove vs<cr>
 noremap <silent><tab>7 :VinegarOpen vs<cr>
 noremap <silent><tab>8 :VinegarOpen belowright sp<cr>
 noremap <silent><tab>9 :VinegarOpen tabedit<cr>
+" ===
+" === RAINBOW
+" ===
+"[count]<leader>cc |NERDCommenterComment|
+
+"Comment out the current line or text selected in visual mode.
+"[count]<leader>ci |NERDCommenterInvert|
+
+"Toggles the comment state of the selected line(s) individually.
+
+"[count]<leader>cs |NERDCommenterSexy|
+
+"Comments out the selected lines with a pretty block formatted layout.
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+" ===
+" === NERDCOMMENT 
+" ===
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code
+" indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+"let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' }}
+let g:NERDCustomDelimiters = { 'html': {'left': '<!--','right': '-->' },'py': { 'left': '#' },'sh': { 'left': '#'},'vimrc': {'left': '"'} }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+
+" ===
+" === The-Silver-Searcher,ack
+" ===
+"let g:ackprg = 'ag --nogroup --nocolor --column'
+" ===
+" === FZF
+" ===
+".fzf.bash里有三个函数。fo,fd,fif
+"fo函数:搜索当前目录下文件, ctrl-o 用 open 打开, ctrl-e 用 vim 打开
+"fd函数:搜索当前路径下目录
+"fif函数：fif+"xxx"搜索当前路径下包含"xxx"的文件并预览。
+
+
+" 搜索当前单词，依赖 https://github.com/ggreer/the_silver_searcher
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+" 搜索文件
+nnoremap <silent> <c-p> :Files <CR>
+
+
+
+
+
+
+
+
+
+
+

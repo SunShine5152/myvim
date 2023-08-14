@@ -132,16 +132,21 @@ git_branch()
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W$(git_branch)\[\033[00m\]\$ '
 PS1='\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;31m\]\A\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]$(git_branch)\[\033[00m\]\n\[\033[01;32m\]\$ '
 
-export PATH=/home/ace_li/bin/cscope/bin:$PATH
-
-alias vim='/home/ace_li/bin/vim82/bin/vim'
-
-source /home/ace_li/Document/z/z.sh
+#export PATH=/home/ace_li/bin/cscope/bin:$PATH
+source /root/Document/z/z.sh
 alias j='z'
-alias tmux='tmux -2'
 
 export CLANG_HOME=/opt/clang
 export PATH=$CLANG_HOME/bin:$PATH
 export LD_LIBRARY_PATH=$CLANG_HOME/lib:$LD_LIBRARY_PATH
 
+export RG=~/.vim/rg/ripgrep/
+export PATH=$RG/:$PATH
+
 alias t='source /root/Document/tag.sh'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+
+
