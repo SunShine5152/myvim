@@ -1,4 +1,3 @@
-"**************lyj*********************"
 let mapleader="\<space>"
 "<<<map
 map s <nop>
@@ -9,9 +8,28 @@ map <A-q> q:
 "map <C-e> :only<CR>
 map <LEADER>s :w<CR>
 map <LEADER>q :q<CR>
-"open quickerfix
-map <LEADER>c :cw<CR>
-map <LEADER>cq :cclose<CR>
+"quickerfix 配置
+nnoremap <leader>c :call QuickfixToggle()<cr>
+
+let g:quickfix_is_open = 0
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+    else
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+fun! ShowFuncName()
+  let lnum = line(".")
+  let col = col(".")
+  echohl ModeMsg
+  echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
+  echohl None
+  call search("\\%" . lnum . "l" . "\\%" . col . "c")
+endfun
+map f :call ShowFuncName() <CR>
 "这段脚本添加后可以使用alt键像ctrl键一样映射。
 for i in range(97,122)
   let c = nr2char(i)
@@ -202,7 +220,7 @@ set completeopt=longest,menu
 " === VIM-PLUG
 " ===
 call plug#begin()
-Plug 'VundleVim/Vundle.vim'
+"Plug 'VundleVim/Vundle.vim'
 Plug 'vim-scripts/taglist.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'wesleyche/SrcExpl'
@@ -237,9 +255,6 @@ Plug 'junegunn/fzf.vim',
 Plug '~/.vim/plugged/vim-vinegar'
 
 call plug#end()
-" You can revert the settings after the call like so:
-"   filetype indent off   " Disable file-type-specific indentation
-"   syntax off            " Disable syntax highlighting
 
 " ===
 " ===	FUGITIVE 
@@ -648,8 +663,16 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 " ===
-" === The-Silver-Searcher,ack
+" === Auto-Pairs
 " ===
+let g:AutoPairsShortcutJump= ''
+" ===
+" === The-Silver-Searcher(ag),ack
+" ===
+if executable('ag')
+    "let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
 "let g:ackprg = 'ag --nogroup --nocolor --column'
 " ===
 " === FZF
@@ -660,15 +683,21 @@ let g:NERDToggleCheckAllLines = 1
 "fif函数：fif+"xxx"搜索当前路径下包含"xxx"的文件并预览。
 
 
-" 搜索当前单词，依赖 https://github.com/ggreer/the_silver_searcher
-nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
 " 搜索文件
-nnoremap <silent> <c-p> :Files <CR>
+nnoremap <silent> <c-p> :GFiles <CR>
 
+"搜索缓冲区
+nnoremap <silent><leader>b :Buffers<CR>
 
+"git 里的用法
+"Commits可以查看commit tree并显示每个commit的内容。
+"git branch -r | fzf
+"git checkout $(git branch -r | fzf)
 
+" 搜索当前单词，依赖 https://github.com/ggreer/the_silver_searcher
+"nnoremap <silent> <leader>a :Ag <C-R><C-W><CR>
 
-
+"nnoremap <leader>g :Ag<CR>
 
 
 
