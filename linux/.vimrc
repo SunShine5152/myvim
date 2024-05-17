@@ -73,8 +73,8 @@ noremap Y 7h
 noremap U 7l
 "map <C-h> :0<CR>
 "map <C-l> :$<CR>
-noremap n nzz
-noremap N Nzz
+" noremap n nzz
+" noremap N Nzz
 ">>>
 "<<ctrl-c,ctrl-v
 ">>>
@@ -119,9 +119,9 @@ map <right> :vertical resize+5<CR>
 ">>>
 "<<<常规设置
 set nocompatible
-filetype on
-filetype indent on
-filetype plugin on
+"filetype on
+" filetype indent on
+" filetype plugin on
 filetype plugin indent on
 set mouse=a
 "set encoding=utf-8
@@ -139,8 +139,8 @@ set expandtab
 set nu rnu
 syntax enable
 syntax on
-"set cursorline
-"set cursorcolumn
+set cursorline
+set cursorcolumn
 set nobackup
 set ruler
 set autoindent
@@ -246,8 +246,12 @@ Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  },
 Plug 'junegunn/fzf.vim',
-
-
+Plug '/home/ace_li/.fzf/fzf-master/'
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'tpope/vim-commentary'
 " ===
 " === myself plugin
 " ===
@@ -255,6 +259,9 @@ Plug 'junegunn/fzf.vim',
 Plug '~/.vim/plugged/vim-vinegar'
 
 call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
 
 " ===
 " ===	FUGITIVE 
@@ -411,7 +418,7 @@ nmap <f4> :cprevious<CR>
 "cs add /home/ace_li/workspace/temp/OX01G10_rom/cscope.out /home/ace_li/workspace/temp/OX01G10_rom
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 if has("cscope")
-    set csprg=/usr/bin/cscope
+    set csprg=~/bin/cscope/bin/cscope
     set csto=1
     set cst
     set nocsverb
@@ -616,6 +623,7 @@ noremap <silent><tab>6 :VinegarOpen leftabove vs<cr>
 noremap <silent><tab>7 :VinegarOpen vs<cr>
 noremap <silent><tab>8 :VinegarOpen belowright sp<cr>
 noremap <silent><tab>9 :VinegarOpen tabedit<cr>
+noremap <silent><tab>c :NERDTreeClose<cr>
 " ===
 " === RAINBOW
 " ===
@@ -695,12 +703,44 @@ nnoremap <silent><leader>b :Buffers<CR>
 "git checkout $(git branch -r | fzf)
 
 " 搜索当前单词，依赖 https://github.com/ggreer/the_silver_searcher
-"nnoremap <silent> <leader>a :Ag <C-R><C-W><CR>
+nnoremap <silent> <leader>a :Ag <C-R><C-W><CR>
 
-"nnoremap <leader>g :Ag<CR>
+nnoremap <silent> <leader>g :Ag <CR>
+" ===
+" === easymotion 
+" ===
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
+"map <Leader> <Plug>(easymotion-prefix)
+"s:search
+nmap s <Plug>(easymotion-overwin-f2)
 
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
 
+" LJKH motions: Line motions
+let g:EasyMotion_startofline = 1 " keep cursor column when JK motion"
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+map <Leader><leader>j <Plug>(easymotion-j)
+map <Leader><leader>k <Plug>(easymotion-k)
+map <Leader><leader>h <Plug>(easymotion-linebackward)
 
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzyword#converter()],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
 
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
+" ===
+" === commentary
+" ===
+" 为python和shell等添加注释
+autocmd FileType python,shell,coffee set commentstring=#\ %s
+"修改注释风格
+autocmd FileType c,cpp set commentstring=//\ %s

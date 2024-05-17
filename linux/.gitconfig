@@ -2,7 +2,7 @@
 	name = xxx
 	email = xxx@xxx.com
 [alias]
-	co=checkout
+	co = "!f() { git checkout \"$@\" && git stash list; }; f"
 	ci=commit
 	br=branch
 	st=status -uno

@@ -1,0 +1,105 @@
+{
+    "workbench.colorTheme": "Visual Studio Dark - C++",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "editor.fontSize": 16,
+    "workbench.startupEditor": "none",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.lineNumbers": "relative",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "off",
+    "terminal.integrated.tabs.enabled": true,
+    "editor.cursorStyle": "line",
+    "terminal.integrated.automationShell.windows": "",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.scrollback": 50000,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "C_Cpp.updateChannel": "Insiders",
+    "remote.SSH.showLoginTerminal": true,
+    "remote.SSH.remotePlatform": {
+        "10.6.23.73": "linux",
+        "10.6.23.72": "linux"
+    },
+    //***vim config start:
+    "vim.hlsearch": true,
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+
+        "<C-a>": false,
+        "<C-b>": false,
+        "<C-c>": false,
+        "<C-d>": true,
+        "<C-e>": false,
+        "<C-f>": false,
+        "<C-g>": false,
+        "<C-h>": false,
+        "<C-i>": false,
+        "<C-j>": false,
+        "<C-k>": false,
+        "<C-l>": false,
+        "<C-m>": false,
+        "<C-n>": false,
+        "<C-o>": false,
+        "<C-p>": false,
+        "<C-q>": false,
+        "<C-r>": false,
+        "<C-s>": false,
+        "<C-t>": false,
+        "<C-u>": true,
+        "<C-v>": true,
+        "<C-w>": false,
+        "<C-x>": false,
+        "<C-y>": false,
+        "<C-z>": false,
+        "<C-[>": false,
+        "<C-]>": false
+},
+"vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        }
+	],
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+	"terminal.integrated.shellIntegration.enabled": true,
+	"workbench.editor.enablePreview": false,
+	"terminal.integrated.scrollback": 5000,
+	"vim.commandLineModeKeyBindings": [
+	
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "s"],
+            "commands":[":w!"]
+        }, 
+    ],
+    "vim.easymotion": true, 
+    //***vim config end.
+
+    // highlight line background color
+"editor.renderLineHighlight": "line",
+  "workbench.colorCustomizations": {
+        "editor.lineHighlightBackground": "#acc5af6e",
+        "editor.lineHighlightBorder": "#ebae29c0"
+    },
+
+"extensions.autoUpdate": false,
+    "extensions.autoCheckUpdates": false,
+    "cmake.showOptionsMovedNotification": false,
+"C_Cpp.workspaceParsingPriority": "low",
+"terminal.integrated.defaultProfile.linux": "bash",
+"window.zoomLevel": 1,
+"editor.minimap.autohide": true,
+"window.customTitleBarVisibility": "windowed",
+"editor.codeActionsOnSave": {
+
+},
+"workbench.activityBar.location": "hidden",
+}
